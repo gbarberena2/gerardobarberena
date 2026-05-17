@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Claude Code local state
+.claude/
+
+# Source files we don't need to publish
+resume_gerardo_barberena_en_nov_2025.docx

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Gerardo Barberena — Senior AI/ML Engineer. 20+ years building production AI, LLM, RAG and multimodal systems." />
+  <meta name="theme-color" content="#0B0F1A" />
+  <title>Gerardo Barberena — Senior AI/ML Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-brand">
+        <span class="brand-mark">GB</span>
+        <span class="brand-name">Gerardo&nbsp;Barberena</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#expertise" data-i18n="nav.expertise">Expertise</a></li>
+        <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="lang-switcher" role="group" aria-label="Language">
+        <button type="button" data-lang="en" class="active">EN</button>
+        <button type="button" data-lang="es">ES</button>
+        <button type="button" data-lang="zh">中文</button>
+        <button type="button" data-lang="fr">FR</button>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Senior AI/ML Engineer · LLM &amp; Multimodal Systems</p>
+          <h1 class="hero-title">
+            <span class="grad-text">Gerardo Barberena</span>
+          </h1>
+          <p class="hero-sub" data-i18n="hero.subtitle">
+            20+ years building production AI — from big data and deep learning to LLMs, RAG and edge inference on NVIDIA hardware.
+          </p>
+          <div class="hero-chips">
+            <span class="chip">LLM &amp; RAG</span>
+            <span class="chip">Multimodal AI</span>
+            <span class="chip">PyTorch · TensorFlow</span>
+            <span class="chip">NVIDIA H100 · Jetson</span>
+            <span class="chip">Kubernetes</span>
+          </div>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="assets/cv_gerardo_barberena.pdf" download>
+              <span data-i18n="hero.cta_cv">Download CV</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#contact">
+              <span data-i18n="hero.cta_contact">Get in touch</span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <div class="photo-ring">
+            <img src="foto_gerardo.jpeg" alt="Gerardo Barberena" />
+          </div>
+          <div class="floating-card card-1">
+            <div class="dot"></div>
+            <span data-i18n="hero.card_available">Available for new projects</span>
+          </div>
+          <div class="floating-card card-2">
+            <span class="card-num">20+</span>
+            <span data-i18n="hero.card_years">years of experience</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="section-inner">
+        <p class="section-eyebrow" data-i18n="about.eyebrow">About</p>
+        <h2 class="section-title" data-i18n="about.title">Engineer who lived every layer of the AI stack</h2>
+        <p class="lead" data-i18n="about.body">
+          From building big-data pipelines on Hadoop and Spark in the early 2010s to deploying multimodal LLM systems on NVIDIA H100 today, I have spent two decades shipping AI that runs in production — not in slides. Computer vision on edge devices, real-time anomaly detection over POS streams, SCADA telemetry across 1,500 gas wells, voice agents fused with RAG: the common thread is reliability at scale and a stubborn focus on the problem, not the buzzword.
+        </p>
+      </div>
+    </section>
+
+    <section id="expertise" class="section">
+      <div class="section-inner">
+        <p class="section-eyebrow" data-i18n="expertise.eyebrow">Expertise</p>
+        <h2 class="section-title" data-i18n="expertise.title">Tech stack &amp; capabilities</h2>
+        <div class="stack-grid">
+          <div class="glass-card stack-card">
+            <h3 data-i18n="expertise.cat_llm">LLM &amp; Generative AI</h3>
+            <div class="tags">
+              <span>Whisper · ASR</span><span>TTS</span><span>LLM Orchestration</span>
+              <span>RAG</span><span>Milvus · Vector DBs</span><span>Multimodal</span>
+            </div>
+          </div>
+          <div class="glass-card stack-card">
+            <h3 data-i18n="expertise.cat_dl">Deep Learning</h3>
+            <div class="tags">
+              <span>PyTorch</span><span>TensorFlow</span><span>Keras</span><span>Caffe</span>
+              <span>CNN · RNN</span><span>OpenCV</span><span>NLTK</span>
+            </div>
+          </div>
+          <div class="glass-card stack-card">
+            <h3 data-i18n="expertise.cat_data">Data &amp; Big Data</h3>
+            <div class="tags">
+              <span>Spark</span><span>Hadoop</span><span>Kafka</span>
+              <span>Pandas · NumPy</span><span>Scikit-learn</span><span>SQL</span>
+            </div>
+          </div>
+          <div class="glass-card stack-card">
+            <h3 data-i18n="expertise.cat_cloud">Cloud &amp; Infra</h3>
+            <div class="tags">
+              <span>AWS (EC2, EMR, SageMaker)</span><span>Azure</span><span>GCP</span>
+              <span>Kubernetes</span><span>Docker</span><span>NVIDIA H100 · Jetson</span>
+            </div>
+          </div>
+          <div class="glass-card stack-card">
+            <h3 data-i18n="expertise.cat_mlops">MLOps</h3>
+            <div class="tags">
+              <span>Airflow</span><span>MLflow</span><span>Kubeflow</span><span>Jenkins</span><span>Git</span>
+            </div>
+          </div>
+          <div class="glass-card stack-card">
+            <h3 data-i18n="expertise.cat_lang">Languages</h3>
+            <div class="tags">
+              <span>Python</span><span>Java</span><span>C / C++</span><span>SQL</span><span>C#</span><span>Visual Basic</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="section-inner">
+        <p class="section-eyebrow" data-i18n="experience.eyebrow">Experience</p>
+        <h2 class="section-title" data-i18n="experience.title">Selected work</h2>
+        <ol class="timeline">
+          <li class="glass-card timeline-item">
+            <div class="timeline-head">
+              <h3 data-i18n="exp.neuranta.role">Neuranta — AI Voice &amp; LLM Platform</h3>
+              <span class="time">Nov 2022 — <span data-i18n="exp.present">Present</span></span>
+            </div>
+            <p class="timeline-meta" data-i18n="exp.neuranta.meta">PRAGMATIC S.A. de C.V. · Applied Machine Learning Engineer</p>
+            <ul>
+              <li data-i18n="exp.neuranta.b1">Multimodal conversational system combining ASR (Whisper), TTS and LLMs with RAG.</li>
+              <li data-i18n="exp.neuranta.b2">Milvus vector DB for semantic retrieval and dynamic call flow context.</li>
+              <li data-i18n="exp.neuranta.b3">Kubernetes microservices for high availability and horizontal scale.</li>
+              <li data-i18n="exp.neuranta.b4">GPU-accelerated pipelines on NVIDIA H100 for low-latency ASR + LLM generation.</li>
+            </ul>
+            <div class="tags">
+              <span>Python</span><span>C++</span><span>Whisper</span><span>Milvus</span><span>Kubernetes</span><span>H100</span>
+            </div>
+          </li>
+
+          <li class="glass-card timeline-item">
+            <div class="timeline-head">
+              <h3 data-i18n="exp.xtrme.role">Xtrmedata — Cybersecurity AI Platform</h3>
+              <span class="time">Mar 2021 — Nov 2022</span>
+            </div>
+            <p class="timeline-meta" data-i18n="exp.xtrme.meta">PRAGMATIC S.A. de C.V. · Machine Learning Developer</p>
+            <ul>
+              <li data-i18n="exp.xtrme.b1">CNN/RNN deep learning models for real-time person counting on RTSP feeds.</li>
+              <li data-i18n="exp.xtrme.b2">User-behavior ML, SIEM correlation and automated incident response.</li>
+              <li data-i18n="exp.xtrme.b3">Spark-based ingestion + TensorFlow for advanced threat detection.</li>
+              <li data-i18n="exp.xtrme.b4">Custom monitoring agents feeding Spark pipelines for large-scale analysis.</li>
+            </ul>
+            <div class="tags">
+              <span>Python</span><span>TensorFlow</span><span>Spark</span><span>Docker</span><span>AWS</span>
+            </div>
+          </li>
+
+          <li class="glass-card timeline-item">
+            <div class="timeline-head">
+              <h3 data-i18n="exp.alsea.role">Alsea (Starbucks · Domino's) — Business Analytics Platform</h3>
+              <span class="time">Nov 2014 — Dec 2020</span>
+            </div>
+            <p class="timeline-meta" data-i18n="exp.alsea.meta">IT GUARDIAN &amp; CONSULTING · Machine Learning Developer</p>
+            <ul>
+              <li data-i18n="exp.alsea.b1">Real-time anomaly detection and camera-based analytics in production.</li>
+              <li data-i18n="exp.alsea.b2">End-to-end platform monitoring transactions, electric meters and network traffic.</li>
+              <li data-i18n="exp.alsea.b3">Unified POS data across Alsea brands to detect anomalies and optimize sales.</li>
+              <li data-i18n="exp.alsea.b4">AWS (EC2, EMR) ETL pipelines integrating camera feeds and meter data.</li>
+            </ul>
+            <div class="tags">
+              <span>Python</span><span>AWS (EC2, EMR)</span><span>Spark</span><span>Hadoop</span>
+            </div>
+          </li>
+
+          <li class="glass-card timeline-item">
+            <div class="timeline-head">
+              <h3 data-i18n="exp.fin.role">Financial Analytics System</h3>
+              <span class="time">Dec 2013 — Sep 2014</span>
+            </div>
+            <p class="timeline-meta" data-i18n="exp.fin.meta">IT GUARDIAN &amp; CONSULTING · Intermediate Software Engineer</p>
+            <ul>
+              <li data-i18n="exp.fin.b1">ML algorithms (A/B testing, association rules, gradient boosting) on trading patterns.</li>
+              <li data-i18n="exp.fin.b2">Predictive models for market trends, optimizing automated trading desks.</li>
+              <li data-i18n="exp.fin.b3">Spark-on-Hadoop ingestion, feature engineering and model training.</li>
+            </ul>
+            <div class="tags"><span>Python</span><span>Spark</span><span>Hadoop</span></div>
+          </li>
+
+          <li class="glass-card timeline-item">
+            <div class="timeline-head">
+              <h3 data-i18n="exp.pemex.role">PEMEX — SCADA Monitoring (1,500 gas wells)</h3>
+              <span class="time">Jan 2012 — Sep 2013</span>
+            </div>
+            <p class="timeline-meta" data-i18n="exp.pemex.meta">SENSE SISTEMAS DE MONITOREO · Developer</p>
+            <ul>
+              <li data-i18n="exp.pemex.b1">Deep learning on real-time sensor data across 1,500 gas wells.</li>
+              <li data-i18n="exp.pemex.b2">MongoDB map-reduce for geolocation-based anomaly detection.</li>
+              <li data-i18n="exp.pemex.b3">Remote command execution and real-time dashboards for maintenance.</li>
+            </ul>
+            <div class="tags"><span>Visual Basic</span><span>Flex</span><span>MySQL</span><span>MongoDB</span></div>
+          </li>
+
+          <li class="glass-card timeline-item">
+            <div class="timeline-head">
+              <h3 data-i18n="exp.siave.role">SIAVE-ADUANAS — Customs Automation</h3>
+              <span class="time">Apr 2009 — Oct 2011</span>
+            </div>
+            <p class="timeline-meta" data-i18n="exp.siave.meta">SENSE SISTEMAS DE MONITOREO · Developer</p>
+            <ul>
+              <li data-i18n="exp.siave.b1">Rules engine with ML-based heuristic predictions for customs data.</li>
+              <li data-i18n="exp.siave.b2">Real-time alerts flagging high-risk shipments from cargo + historical patterns.</li>
+              <li data-i18n="exp.siave.b3">Integration with external government databases for compliance checks.</li>
+            </ul>
+            <div class="tags"><span>PHP</span><span>Flash</span><span>MySQL</span></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="section-inner">
+        <p class="section-eyebrow" data-i18n="projects.eyebrow">Projects</p>
+        <h2 class="section-title" data-i18n="projects.title">Open-source &amp; case studies</h2>
+        <div class="glass-card placeholder-card">
+          <div class="placeholder-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+          <h3 data-i18n="projects.soon_title">Coming soon</h3>
+          <p data-i18n="projects.soon_body">Featured repositories and write-ups will be published here shortly.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="section">
+      <div class="section-inner">
+        <p class="section-eyebrow" data-i18n="education.eyebrow">Education</p>
+        <h2 class="section-title" data-i18n="education.title">Education &amp; certifications</h2>
+        <div class="edu-grid">
+          <div class="glass-card edu-card">
+            <h3>National University of Engineering</h3>
+            <p data-i18n="edu.uni">B.S. in Systems Engineering · Managua, Nicaragua</p>
+            <span class="time">1997 — 2001</span>
+          </div>
+          <div class="glass-card edu-card">
+            <h3>Platzi</h3>
+            <p data-i18n="edu.platzi">Machine Learning Engineer Program</p>
+            <span class="time">2022 — 2023</span>
+          </div>
+          <div class="glass-card edu-card">
+            <h3>SEP México</h3>
+            <p data-i18n="edu.sep">Examen EGAL Acuerdo 286 — Outstanding Result</p>
+            <span class="time">2021</span>
+          </div>
+          <div class="glass-card edu-card">
+            <h3>Harmon Hall</h3>
+            <p data-i18n="edu.english">Advanced English Proficiency</p>
+            <span class="time">2007 — 2009</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <div class="section-inner">
+        <p class="section-eyebrow" data-i18n="contact.eyebrow">Contact</p>
+        <h2 class="section-title" data-i18n="contact.title">Let's build something</h2>
+        <p class="lead" data-i18n="contact.body">Open to senior AI/ML roles, LLM platform work and consulting. Fastest way to reach me is WhatsApp.</p>
+
+        <div class="contact-actions">
+          <a class="btn btn-wa" href="https://wa.me/525578539814" target="_blank" rel="noopener">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="currentColor"><path d="M16 0C7.2 0 0 7.2 0 16c0 2.8.7 5.5 2.1 7.9L0 32l8.4-2.2C10.7 31.2 13.3 32 16 32c8.8 0 16-7.2 16-16S24.8 0 16 0zm0 29.3c-2.5 0-4.9-.7-7-1.9l-.5-.3-5 1.3 1.3-4.9-.3-.5C3.3 21 2.7 18.5 2.7 16 2.7 8.7 8.7 2.7 16 2.7S29.3 8.7 29.3 16 23.3 29.3 16 29.3zm7.3-9.9c-.4-.2-2.4-1.2-2.7-1.3-.4-.1-.6-.2-.9.2-.3.4-1 1.3-1.2 1.5-.2.2-.4.3-.8.1-.4-.2-1.7-.6-3.2-2-1.2-1.1-2-2.4-2.2-2.8-.2-.4 0-.6.2-.8.2-.2.4-.5.6-.7.2-.2.3-.4.4-.7.1-.3 0-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.7c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 4 1.7 4.3c.2.3 2.9 4.5 7.1 6.3 1 .4 1.8.7 2.4.9.9.3 1.8.2 2.5.2.8-.1 2.4-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.4-.2-.8-.5z"/></svg>
+            <span><span data-i18n="contact.wa">WhatsApp</span> · +52 55 7853 9814</span>
+          </a>
+
+          <div class="contact-row">
+            <a class="btn btn-ghost" href="mailto:gerardo.barberena@icloud.com">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 4l8 8 8-8"/></svg>
+              <span data-i18n="contact.email">Email</span>
+            </a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/gerardobarberena/" target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0H5a5 5 0 00-5 5v14a5 5 0 005 5h14a5 5 0 005-5V5a5 5 0 00-5-5zM8 19H5V8h3v11zM6.5 6.7a1.8 1.8 0 110-3.6 1.8 1.8 0 010 3.6zM20 19h-3v-5.6c0-1.4-.5-2.3-1.7-2.3-1 0-1.5.6-1.8 1.3-.1.2-.1.5-.1.8V19h-3V8h3v1.3a3 3 0 012.7-1.5c2 0 3.5 1.3 3.5 4V19z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+            <a class="btn btn-ghost" href="tel:+525578539814">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.5 2.1L8 9.6a16 16 0 006 6l1.1-1.1a2 2 0 012.1-.5c.9.3 1.8.5 2.7.6a2 2 0 011.7 2.1z"/></svg>
+              <span data-i18n="contact.phone">Call</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>© <span id="year"></span> Gerardo Barberena · <span data-i18n="footer.made">Built with Python, HTML &amp; care.</span></p>
+    </div>
+  </footer>
+
+  <script src="translations.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
