@@ -8,6 +8,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="stats.css" />
 </head>
 <body>
@@ -68,19 +71,34 @@
           <div class="chart-wrap"><canvas id="chart-daily"></canvas></div>
         </article>
 
+        <article class="panel panel-wide map-panel">
+          <h2>Where visitors come from</h2>
+          <div id="map" class="chart-wrap map"></div>
+        </article>
+
         <article class="panel">
           <h2>Top countries</h2>
           <div class="chart-wrap"><canvas id="chart-countries"></canvas></div>
         </article>
 
         <article class="panel">
-          <h2>Language</h2>
-          <div class="chart-wrap"><canvas id="chart-langs"></canvas></div>
+          <h2>Operating system</h2>
+          <div class="chart-wrap"><canvas id="chart-os"></canvas></div>
+        </article>
+
+        <article class="panel">
+          <h2>Browser</h2>
+          <div class="chart-wrap"><canvas id="chart-browser"></canvas></div>
         </article>
 
         <article class="panel">
           <h2>Device</h2>
           <div class="chart-wrap"><canvas id="chart-devices"></canvas></div>
+        </article>
+
+        <article class="panel">
+          <h2>Language</h2>
+          <div class="chart-wrap"><canvas id="chart-langs"></canvas></div>
         </article>
 
         <article class="panel">
@@ -98,6 +116,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <script src="../supabase-config.js"></script>
   <script src="stats.js"></script>
 </body>

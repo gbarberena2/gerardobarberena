@@ -175,6 +175,33 @@ main { padding: 36px 28px 60px; max-width: 1300px; margin: 0 auto; }
 }
 .panel-wide .chart-wrap { height: 300px; }
 
+/* Map panel — Leaflet needs an explicit height */
+.map-panel .chart-wrap { height: 440px; }
+#map.map {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #06101e;
+}
+/* Tame Leaflet's default light attribution bar to fit the dark theme */
+.leaflet-control-attribution {
+  background: rgba(10, 25, 47, 0.85) !important;
+  color: var(--slate) !important;
+  font-size: 10px !important;
+}
+.leaflet-control-attribution a { color: var(--green) !important; }
+.leaflet-bar a {
+  background: var(--light-navy) !important;
+  color: var(--lightest-slate) !important;
+  border-color: var(--lightest-navy) !important;
+}
+.leaflet-bar a:hover { background: var(--lightest-navy) !important; }
+.marker-cluster-small  { background: rgba(100, 255, 218, 0.30) !important; }
+.marker-cluster-small div { background: rgba(100, 255, 218, 0.65) !important; color: var(--navy) !important; font-family: 'JetBrains Mono', monospace !important; font-weight: 700; }
+.marker-cluster-medium { background: rgba(167, 139, 250, 0.30) !important; }
+.marker-cluster-medium div { background: rgba(167, 139, 250, 0.80) !important; color: var(--navy) !important; font-family: 'JetBrains Mono', monospace !important; font-weight: 700; }
+.marker-cluster-large  { background: rgba(244, 114, 182, 0.30) !important; }
+.marker-cluster-large div { background: rgba(244, 114, 182, 0.85) !important; color: var(--navy) !important; font-family: 'JetBrains Mono', monospace !important; font-weight: 700; }
+
 /* Lists */
 .list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
 .list li {
@@ -213,5 +240,6 @@ main { padding: 36px 28px 60px; max-width: 1300px; margin: 0 auto; }
   .panel { padding: 18px; }
   .chart-wrap { height: 230px; }
   .panel-wide .chart-wrap { height: 240px; }
+  .map-panel .chart-wrap { height: 340px; }
   .kpi-value { font-size: 26px; }
 }

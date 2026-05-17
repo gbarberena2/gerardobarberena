@@ -150,6 +150,26 @@
   }
 
   // ---------- Visit tracker ----------
+  // Bots that DO execute JS but identify themselves in the UA string.
+  // Plain Googlebot etc. don't run JS so they never reach here.
+  const BOT_RE = /bot|crawl|spider|preview|monitor|headless|playwright|puppeteer|lighthouse|pagespeed|gptbot|chatgpt|claude|anthropic|openai/i;
+
+  function parseUA() {
+    if (typeof UAParser === "undefined") return {};
+    try {
+      const r = new UAParser().getResult();
+      return {
+        device_type:     r.device && r.device.type ? r.device.type : "desktop",
+        os_name:         r.os && r.os.name ? r.os.name : null,
+        os_version:      r.os && r.os.version ? r.os.version : null,
+        browser_name:    r.browser && r.browser.name ? r.browser.name : null,
+        browser_version: r.browser && r.browser.version ? r.browser.version : null,
+      };
+    } catch (_) {
+      return {};
+    }
+  }
+
   async function trackVisit() {
     const cfg = window.GB_SUPABASE;
     if (!cfg) return;
@@ -158,16 +178,29 @@
     if (host === "localhost" || host === "127.0.0.1" || host === "") return;
     if (location.pathname.startsWith("/stats")) return;
     if (sessionStorage.getItem("gb_tracked")) return;
+
+    const ua = navigator.userAgent || "";
+    if (BOT_RE.test(ua)) return;             // silent drop for JS-running bots
+    if (navigator.webdriver) return;          // headless automation flag
+
     sessionStorage.setItem("gb_tracked", "1");
 
-    let country = null;
+    // Geo + parsed UA
+    let country = null, latitude = null, longitude = null;
     try {
       const ctrl = new AbortController();
-      const t = setTimeout(() => ctrl.abort(), 1500);
+      const t = setTimeout(() => ctrl.abort(), 1800);
       const r = await fetch("https://ipapi.co/json/", { signal: ctrl.signal });
       clearTimeout(t);
-      if (r.ok) country = (await r.json()).country_code || null;
-    } catch (_) { /* offline / blocked / quota — fine, country stays null */ }
+      if (r.ok) {
+        const j = await r.json();
+        country = j.country_code || null;
+        if (typeof j.latitude === "number")  latitude  = j.latitude;
+        if (typeof j.longitude === "number") longitude = j.longitude;
+      }
+    } catch (_) { /* offline / blocked / quota — fine, stays null */ }
+
+    const uaInfo = parseUA();
 
     try {
       await fetch(`${cfg.url}/rest/v1/visits`, {
@@ -184,8 +217,11 @@
           lang: document.documentElement.lang || null,
           viewport_w: window.innerWidth || null,
           viewport_h: window.innerHeight || null,
-          user_agent: (navigator.userAgent || "").slice(0, 250),
+          user_agent: ua.slice(0, 250),
           country,
+          latitude,
+          longitude,
+          ...uaInfo,
         }),
       });
     } catch (_) { /* tracker must never break the page */ }

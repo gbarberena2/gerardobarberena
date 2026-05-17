@@ -73,7 +73,9 @@
 
   async function loadData() {
     const since = rangeStart();
-    let q = sb.from("visits").select("created_at,path,referrer,lang,viewport_w,country").order("created_at", { ascending: false });
+    let q = sb.from("visits")
+      .select("created_at,path,referrer,lang,viewport_w,country,latitude,longitude,device_type,os_name,browser_name")
+      .order("created_at", { ascending: false });
     if (since) q = q.gte("created_at", since);
     const { data, error } = await q.limit(50000);
     if (error) {
@@ -164,6 +166,59 @@
     return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   }
 
+  // ---------- Map ----------
+  let leafletMap = null;
+  let markerCluster = null;
+
+  function renderMap(rows) {
+    if (typeof L === "undefined") return;     // Leaflet not loaded yet, silently skip
+
+    if (!leafletMap) {
+      leafletMap = L.map("map", {
+        worldCopyJump: true,
+        zoomControl: true,
+        attributionControl: true,
+        minZoom: 1,
+      }).setView([20, 0], 2);
+
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: "abcd",
+        maxZoom: 19,
+      }).addTo(leafletMap);
+
+      markerCluster = L.markerClusterGroup({
+        showCoverageOnHover: false,
+        maxClusterRadius: 40,
+      });
+      leafletMap.addLayer(markerCluster);
+
+      // Fix gray-tile bug when the panel appears after layout
+      setTimeout(() => leafletMap.invalidateSize(), 200);
+    }
+
+    markerCluster.clearLayers();
+
+    const points = [];
+    for (const r of rows) {
+      if (typeof r.latitude !== "number" || typeof r.longitude !== "number") continue;
+      const m = L.circleMarker([r.latitude, r.longitude], {
+        radius: 6,
+        fillColor: "#64ffda",
+        color: "#64ffda",
+        weight: 1,
+        fillOpacity: 0.65,
+      });
+      const tip = [r.country, new Date(r.created_at).toLocaleString()].filter(Boolean).join(" · ");
+      if (tip) m.bindTooltip(tip);
+      markerCluster.addLayer(m);
+      points.push([r.latitude, r.longitude]);
+    }
+    if (points.length) {
+      try { leafletMap.fitBounds(L.latLngBounds(points).pad(0.2), { maxZoom: 5 }); } catch (_) {}
+    }
+  }
+
   function render(rows) {
     setKpis(rows);
     const since = rangeStart();
@@ -223,8 +278,15 @@
       },
     });
 
-    // Devices (mobile vs desktop by viewport width)
-    const devices = bucketBy(rows, (r) => (r.viewport_w == null ? "Unknown" : r.viewport_w < 700 ? "Mobile" : r.viewport_w < 1100 ? "Tablet" : "Desktop"));
+    // Devices: prefer UAParser's device_type, fall back to viewport width.
+    const devices = bucketBy(rows, (r) => {
+      if (r.device_type) {
+        const t = r.device_type.toLowerCase();
+        return t.charAt(0).toUpperCase() + t.slice(1); // Mobile / Tablet / Desktop
+      }
+      if (r.viewport_w == null) return "Unknown";
+      return r.viewport_w < 700 ? "Mobile" : r.viewport_w < 1100 ? "Tablet" : "Desktop";
+    });
     drawChart("chart-devices", {
       type: "doughnut",
       data: {
@@ -237,6 +299,43 @@
         plugins: { legend: { position: "bottom", labels: { color: "#a8b2d1", font: { family: "JetBrains Mono", size: 11 } } } },
       },
     });
+
+    // OS breakdown (iOS / Android / Windows / macOS / Linux ...)
+    const oses = bucketBy(rows, (r) => r.os_name || "Unknown").slice(0, 8);
+    drawChart("chart-os", {
+      type: "bar",
+      data: {
+        labels: oses.map((e) => e[0]),
+        datasets: [{
+          label: "Visits",
+          data: oses.map((e) => e[1]),
+          backgroundColor: PALETTE,
+          borderRadius: 4,
+        }],
+      },
+      options: commonDarkOpts({
+        indexAxis: "y",
+        plugins: { legend: { display: false } },
+      }),
+    });
+
+    // Browsers
+    const browsers = bucketBy(rows, (r) => r.browser_name || "Unknown").slice(0, 8);
+    drawChart("chart-browser", {
+      type: "doughnut",
+      data: {
+        labels: browsers.map((e) => e[0]),
+        datasets: [{ data: browsers.map((e) => e[1]), backgroundColor: PALETTE, borderColor: "#0a192f", borderWidth: 2 }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { position: "bottom", labels: { color: "#a8b2d1", font: { family: "JetBrains Mono", size: 11 } } } },
+      },
+    });
+
+    // Map
+    renderMap(rows);
 
     // Top paths
     renderList("list-paths", bucketBy(rows, (r) => r.path || "/"));

@@ -12,15 +12,22 @@
 -- ============================================================================
 
 create table if not exists public.visits (
-  id          bigserial primary key,
-  created_at  timestamptz not null default now(),
-  path        text,
-  referrer    text,
-  lang        text,
-  viewport_w  int,
-  viewport_h  int,
-  user_agent  text,
-  country     text
+  id              bigserial primary key,
+  created_at      timestamptz not null default now(),
+  path            text,
+  referrer        text,
+  lang            text,
+  viewport_w      int,
+  viewport_h      int,
+  user_agent      text,
+  country         text,
+  latitude        double precision,
+  longitude       double precision,
+  device_type     text,
+  os_name         text,
+  os_version      text,
+  browser_name    text,
+  browser_version text
 );
 
 -- Indexes for the dashboard's typical group-by queries.
@@ -28,6 +35,8 @@ create index if not exists visits_created_at_idx on public.visits (created_at de
 create index if not exists visits_lang_idx       on public.visits (lang);
 create index if not exists visits_country_idx    on public.visits (country);
 create index if not exists visits_path_idx       on public.visits (path);
+create index if not exists visits_os_idx         on public.visits (os_name);
+create index if not exists visits_device_idx     on public.visits (device_type);
 
 -- Make sure the REST API can see the table (in case auto-expose was disabled).
 grant insert on public.visits to anon;

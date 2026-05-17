@@ -40,7 +40,7 @@ def run():
             print("CONSOLE / PAGE ERRORS:")
             for e in errors: print(" ", e)
         else:
-            print("No console errors. ✅")
+            print("No console errors. OK")
 
 if __name__ == "__main__":
     run()
