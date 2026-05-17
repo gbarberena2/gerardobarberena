@@ -149,6 +149,48 @@
     document.querySelectorAll(".section.reveal").forEach((el) => io.observe(el));
   }
 
+  // ---------- Visit tracker ----------
+  async function trackVisit() {
+    const cfg = window.GB_SUPABASE;
+    if (!cfg) return;
+
+    const host = location.hostname;
+    if (host === "localhost" || host === "127.0.0.1" || host === "") return;
+    if (location.pathname.startsWith("/stats")) return;
+    if (sessionStorage.getItem("gb_tracked")) return;
+    sessionStorage.setItem("gb_tracked", "1");
+
+    let country = null;
+    try {
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), 1500);
+      const r = await fetch("https://ipapi.co/json/", { signal: ctrl.signal });
+      clearTimeout(t);
+      if (r.ok) country = (await r.json()).country_code || null;
+    } catch (_) { /* offline / blocked / quota — fine, country stays null */ }
+
+    try {
+      await fetch(`${cfg.url}/rest/v1/visits`, {
+        method: "POST",
+        headers: {
+          apikey: cfg.publishableKey,
+          Authorization: `Bearer ${cfg.publishableKey}`,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal",
+        },
+        body: JSON.stringify({
+          path: location.pathname || "/",
+          referrer: document.referrer || null,
+          lang: document.documentElement.lang || null,
+          viewport_w: window.innerWidth || null,
+          viewport_h: window.innerHeight || null,
+          user_agent: (navigator.userAgent || "").slice(0, 250),
+          country,
+        }),
+      });
+    } catch (_) { /* tracker must never break the page */ }
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     applyLang(detectInitialLang());
     initLangSwitcher();
@@ -156,5 +198,11 @@
     initNavScroll();
     initTabs();
     initReveal();
+    // Fire tracker after the page is interactive — don't block render.
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(trackVisit, { timeout: 2000 });
+    } else {
+      setTimeout(trackVisit, 800);
+    }
   });
 })();
