@@ -157,8 +157,6 @@ main { padding: 36px 28px 60px; max-width: 1300px; margin: 0 auto; }
   border: 1px solid var(--lightest-navy);
   border-radius: 10px;
   padding: 22px;
-  min-height: 280px;
-  display: flex; flex-direction: column;
 }
 .panel-wide { grid-column: 1 / -1; }
 .panel h2 {
@@ -168,10 +166,17 @@ main { padding: 36px 28px 60px; max-width: 1300px; margin: 0 auto; }
   font-weight: 500;
   letter-spacing: 0.02em;
 }
-.panel canvas { flex: 1; min-height: 0; }
+
+/* Chart wrappers: fixed height container kills the Chart.js infinite-resize loop */
+.chart-wrap {
+  position: relative;
+  height: 260px;
+  width: 100%;
+}
+.panel-wide .chart-wrap { height: 300px; }
 
 /* Lists */
-.list { list-style: none; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
 .list li {
   display: flex; justify-content: space-between; align-items: center;
   gap: 12px;
@@ -205,6 +210,8 @@ main { padding: 36px 28px 60px; max-width: 1300px; margin: 0 auto; }
   .bar { padding: 12px 16px; flex-wrap: wrap; gap: 10px; }
   .bar-actions { margin-left: 0; width: 100%; justify-content: space-between; }
   main { padding: 20px 16px 40px; }
-  .panel { padding: 18px; min-height: 240px; }
+  .panel { padding: 18px; }
+  .chart-wrap { height: 230px; }
+  .panel-wide .chart-wrap { height: 240px; }
   .kpi-value { font-size: 26px; }
 }
